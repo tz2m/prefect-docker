@@ -1,0 +1,32 @@
+services:
+  prefect-server:
+    image: prefect:0.9.2
+    container_name: prefect-server
+    env_file:
+      - .env
+    environment:
+      PREFECT_API_DATABASE_CONNECTION_URL: "postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@prefect-postgres:5432/prefect"
+      PREFECT_SERVER_ALLOW_EPHEMERAL_MODE: 'false'
+      PREFECT_SERVER_API_AUTH_STRING: ${PREFECT_SERVER_API_AUTH_STRING}
+    depends_on:
+      - prefect-postgres
+    ports:
+      - "4200:4200"  # Interface do Prefect Server
+
+  prefect-postgres:
+    image: postgres:latest
+    container_name: prefect-db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: prefect
+    expose:
+      - "5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+    driver: local
