@@ -5,7 +5,6 @@ This project provides a **Docker Compose** setup for running **Prefect Server** 
 ## Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## Setup
 
@@ -13,7 +12,7 @@ This project provides a **Docker Compose** setup for running **Prefect Server** 
 
 ```sh
 git clone https://github.com/tz2/prefect-docker.git
-cd prefect-docker2
+cd prefect-docker
 ```
 
 ### 2. Create a `.env` file
