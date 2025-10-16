@@ -1,6 +1,6 @@
 services:
   prefect-server:
-    image: prefect:0.9.5
+    image: prefect:0.9.6
     container_name: prefect-server
     networks:
       - prefect-server-net
@@ -48,6 +48,6 @@ volumes:
 
 networks:
   prefect-server-net:
-    external:
-      name: prefect-server-net
+    external: true
+
 
